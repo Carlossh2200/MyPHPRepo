@@ -3,6 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel ="stylesheet" href="css/styles.css">
     <title>Login</title>
 </head>
 <body>
@@ -54,7 +55,7 @@
                     <label>Username</label> <input type="text" name="username" class="full-width" required>
                 </div>
                 <div class="row">
-                    <label>Password</label> <input type="password" name="password" class="full-width" required>
+                    <label>Password </label> <input type="password" name="password" class="full-width" required>
                 </div>
                 <div class="row">
                     <input type="submit" name="submit" value="Submit" class="full-width">
@@ -63,4 +64,7 @@
         </form>
     </div>
 </body>
+<footer>
+    <h6>All rights reserved </h6>
+</footer>
 </html>
