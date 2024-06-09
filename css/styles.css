@@ -1,3 +1,14 @@
+body{
+    margin:0;
+    display: grid;
+    height: 100%;
+    grid-template-areas: 
+    "header-section"
+    "main-content-section"
+    "footer-section";
+    grid-template-rows: 70px 100% 50px;
+}
+
 h2{
     font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
 }
@@ -5,6 +16,16 @@ h2{
 h6{
     position: absolute;
     bottom: 0px;
+}
+
+a{
+    text-decoration: none;
+    color: rgb(0, 0, 0);
+}
+
+a:hover{
+    text-decoration: none;
+    color:orange;
 }
 
 .loginText{
@@ -26,6 +47,7 @@ h6{
 }
 
 .header{ 
+    grid-area: header-section;
     overflow: hidden;
     background-color: #f1f1f1;
     padding: 20px 10px;
@@ -33,6 +55,11 @@ h6{
     top:0;
     left: 0;
     width: 100%;
+}
+
+.main{
+    grid-area: main-content-section;
+
 }
 
 .header a{
@@ -79,15 +106,80 @@ h6{
 }
 
 .footer{
+    grid-area: footer-section;
+    font-family: monospace;
+    
+}
+
+.footer .footerContent{
     position: fixed;
     bottom: 0;
     background-color: #f1f1f1;
     width: 100%;
     left: 0;
+    display: flex;
+    flex-direction: row;
+
 }
 
 #kanyeFaceImg{
     width: 100px;
     height: 80px;
     object-fit: cover;
+}
+
+.footerColumn{
+    flex:1;
+    text-align: center;
+}
+
+.footerColumn a{
+    display: block;
+    padding: 10px;
+    border-radius: 5px;
+    background-color: #f9f9f9;
+}
+
+.preFooter{
+    position: fixed;
+    display: flex;
+    flex-direction: row;
+    bottom: 130px;
+    
+}
+
+.flexPlaylist{
+    display:flex;
+    background-color:rgb(7, 77, 108);
+    align-items: start;
+    justify-content: space-around;
+    height: 470px;
+}
+
+.flexPlaylist > div{
+    background-color: #17ba30;
+    margin: 10px;
+    padding: 20px;
+    font-size: 30px;
+    
+}
+
+.divPlaylist a{
+    padding-top: 20px;
+    margin-top: 20px;
+    font-family: monospace;
+    float: left;
+    color: rgb(0,0,0);
+    text-align: center;
+    padding: 12px;
+    text-decoration: none;
+    font-size: 28px;
+    line-height: 25px;
+    border-radius: 4px;
+}
+
+.divPlaylist a:hover{
+    color:rgb(255, 255, 255);
+    cursor:pointer;
+    
 }
