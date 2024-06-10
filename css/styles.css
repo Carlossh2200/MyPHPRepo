@@ -148,38 +148,59 @@ a:hover{
     
 }
 
-.flexPlaylist{
-    display:flex;
-    background-color:rgb(7, 77, 108);
+.flexPlaylist {
+    padding-top: 20px;
+    display: flex;
+    background-color: rgb(7, 77, 108);
     align-items: start;
     justify-content: space-around;
-    height: 470px;
+    height: auto;
 }
 
-.flexPlaylist > div{
+.flexPlaylist > div {
+    display: flex;
+    justify-content: center;
+    align-items: center;
     background-color: #17ba30;
     margin: 10px;
-    padding: 20px;
     font-size: 30px;
-    
+    height: 400px;
+    width: 440px;
+    box-sizing: border-box;
 }
 
-.divPlaylist a{
-    padding-top: 20px;
-    margin-top: 20px;
+.divPlaylist a {
+    display: flex;
+    align-items: center;
+    justify-content: center;
     font-family: monospace;
-    float: left;
-    color: rgb(0,0,0);
+    color: rgb(0, 0, 0);
     text-align: center;
-    padding: 12px;
     text-decoration: none;
     font-size: 28px;
     line-height: 25px;
     border-radius: 4px;
+    height: 100%; /* Make it fill the parent div */
+    width: 100%; /* Make it fill the parent div */
+    border: 3px dotted black; /* Include the border */
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
 }
 
-.divPlaylist a:hover{
-    color:rgb(255, 255, 255);
-    cursor:pointer;
+.divPlaylist a:hover {
+    color: rgb(255, 255, 255);
+    cursor: pointer;
+}
+
+.add_song_rows{
+    display: flex;
+    align-items: center;
+    justify-content: center;
     
+}
+
+.add_song_row{
+    font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+    font-weight: 700;
 }

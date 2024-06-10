@@ -11,7 +11,7 @@
     <main>
     <div class="flexPlaylist">
         <div class="divPlaylist">
-        <a>Add songs</a>
+        <a href="addSongs.php">Add songs</a>
         </div>
         <div class="divPlaylist">
         <a>Manage your playlists</a>
