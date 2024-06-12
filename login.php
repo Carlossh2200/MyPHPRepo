@@ -9,6 +9,8 @@
 <body>
 
     <?php 
+    session_start();
+
     $message = "";
     if (count($_POST) > 0){
         $isSuccess = 0;
@@ -24,14 +26,19 @@
                 $password = $row["password"];
                 if ($_POST["password"] === $password){
                     $isSuccess = 1;
+                    $_SESSION['username'] = $userName;
+                    break;
                 }
             }
         }
+        $statement->close();
+        $conn->close();
         if ($isSuccess == 0){
             $message = "Invalid Username or Password";
         }
         else{
-            header("Location: ./home.php");
+            header("Location: ./addSongs.php");
+            exit();
         }
     }
     ?>
