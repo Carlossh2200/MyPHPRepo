@@ -7,68 +7,79 @@
     <link rel="stylesheet" href="./css/styles.css">
 </head>
 <body>
-    <?php include('./view/header.php') ?>
+    <?php
+    error_reporting(E_ALL);
+    ini_set('display_errors', 1);
+    session_start();
+    include('./view/header.php');
+    ?>
 
     <?php  
-    session_start();
+     $conn = mysqli_connect("localhost", "root", "", "users");
+     if (!$conn) {
+         die("Connection failed: " . mysqli_connect_error());
+     } else {
+         echo "Database connected successfully<br>";
+     }
     $messageSuccess = "";
     $messageFail = "";
 
-    if ($_SERVER["REQUEST_METHOD"] == "POST") {
-        $userName = "";
+    if (isset($_POST['submit'])) {
 
-        $songName = ($_POST['songName']);
-        $songArtist = ($_POST['songArtist']);
-        $songAlbum = ($_POST['songAlbum']);
-        $songYear = ($_POST['songYear']);
-        
-        if (isset($_SESSION['username'])){
+        $songName = $_POST['songName'];
+        $songArtist = $_POST['songArtist'];
+        $songAlbum = $_POST['songAlbum'];
+        $songYear = $_POST['songYear'];
+
+        $songName = htmlspecialchars($_POST['songName']);
+        $songArtist = htmlspecialchars($_POST['songArtist']);
+        $songAlbum = htmlspecialchars($_POST['songAlbum']);
+        $songYear = intval($_POST['songYear']);
+
+        if (isset($_SESSION['username'])) {
             $userName = $_SESSION['username'];
-        
-            $conn = mysqli_connect("localhost","root","","users");
-            if ($conn->connect_error){
-                die("Connection failed: ". $conn->connect_error);
-            }
-        
             $sql = "SELECT id FROM user WHERE username = ?";
             $statement = $conn->prepare($sql);
-            $statement->bind_param('s',$userName);
-            $statement->execute();
-            $result = $statement->get_result();
-        
-            if ($row = $result->fetch_assoc()){
-                $userId = $row['id'];
-                $userId = intval($userId);
-        
-                $sqlInsert = "INSERT INTO playlist (name,artist,album,year,id_user) VALUES (?,?,?,?,?)";
-                $statementInsert = $conn->prepare($sqlInsert); // Use $sqlInsert here
-                $statementInsert->bind_param('sssii',$songName,$songArtist,$songAlbum,$songYear,$userId);
-        
-                if ($statementInsert->execute()){
-                    $messageSuccess = "Song added successfully";
-                }else{
-                    $messageFail = "Error adding song: " . $statementInsert->error;
-                }
-            }else{
-                echo "No user logged in this session.";
-            }
-        
-            $statement->close();
-            $statementInsert->close();
-            $conn->close();
+            if ($statement) {
+                $statement->bind_param('s', $userName);
+                $statement->execute();
+                $result = $statement->get_result();
 
+                if ($row = $result->fetch_assoc()) {
+                    $userId = intval($row['id']);
+                    echo "User ID: $userId<br>";
+
+                    $sqlInsert = "INSERT INTO playlist (name, artist, album, year, id_user) VALUES (?, ?, ?, ?, ?)";
+                    $statementInsert = $conn->prepare($sqlInsert);
+                    if ($statementInsert) {
+                        $statementInsert->bind_param('sssii', $songName, $songArtist, $songAlbum, $songYear, $userId);
+
+                        if ($statementInsert->execute()) {
+                            echo "<script>alert('Song added successfully')</script>";
+                        } else {
+                            echo "<script>alert('Error adding song')</script>";
+                            $messageFail = "Error adding song: " . $statementInsert->error;
+                        }
+                        $statementInsert->close();
+                    } else {
+                        $messageFail = "Error preparing insert statement: " . $conn->error;
+                    }
+                } else {
+                    echo "<script>alert('No user found for the current session')</script>";
+                }
+                $statement->close();
+            } else {
+                $messageFail = "Error preparing select statement: " . $conn->error;
+            }
+            $conn->close();
+        } else {
+            echo "<script>alert('User is not logged in')</script>";
         }
     }
     ?>
 
     <main>
-    <?php if ($messageSuccess): ?>
-            <div class="success-message"><?php echo $messageSuccess; ?></div>
-        <?php endif; ?>
-        <?php if ($messageFail): ?>
-            <div class="error-message"><?php echo $messageFail; ?></div>
-        <?php endif; ?>
-        <form action="" method="post">
+        <form action="" method="POST">
             <h2>Add Song</h2>
             <div class="add_song_rows">
 
