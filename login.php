@@ -70,6 +70,10 @@
             </div>
         </form>
     </div>
+    <div class="signupOptions">
+    <h3>No account? </h3>
+    <a class="signupButton" href="signup.php"> Sign Up</a>
+    </div>
 </body>
 <footer>
     <h6>All rights reserved </h6>

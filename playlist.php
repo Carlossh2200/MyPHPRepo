@@ -14,7 +14,7 @@
         <a href="addSongs.php">Add songs</a>
         </div>
         <div class="divPlaylist">
-        <a>Manage your playlists</a>
+        <a href="managePlaylist.php">Manage your playlists</a>
         </div>
     </div>
     </main>

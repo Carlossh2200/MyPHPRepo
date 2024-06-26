@@ -1,12 +1,12 @@
 body{
     margin:0;
     display: grid;
-    height: 100%;
+    height: 100vh;
     grid-template-areas: 
     "header-section"
     "main-content-section"
     "footer-section";
-    grid-template-rows: 70px 100% 50px;
+    grid-template-rows: 70px 1fr 50px;
 }
 
 h2{
@@ -41,6 +41,50 @@ a:hover{
     justify-content: center;
 }
 
+.signupOptions{
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content:center;
+}
+
+.signupOptions .signupButton{
+    padding-left: 10px;
+}
+
+.signupOptions .signupButton:hover{
+    cursor: pointer;
+}
+
+.signupForm{
+    display: flex;
+    flex-direction: column;
+    align-items:center;
+    justify-content:center;
+    width: 100%;
+    height: 100%;
+    padding: 20px;
+    background-color: #fff;
+    border-radius: 8px;
+}
+
+.signupForm h2{
+    text-align: center;
+    padding-bottom: 20px;
+}
+
+.signupForm .row{
+    margin-top: 5px;
+    margin-bottom: 5px;
+    padding-bottom: 15px;
+}
+
+.signupForm .rowSubmit{
+    display: flex;
+    justify-content: center;
+    margin-top: 20px;
+}
+
 .row{
     font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
     font-weight: 700;
@@ -57,9 +101,13 @@ a:hover{
     width: 100%;
 }
 
-.main{
+.main-content-section {
     grid-area: main-content-section;
-
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 20px;
+    box-sizing: border-box;
 }
 
 .header a{
@@ -84,7 +132,7 @@ a:hover{
     color: black;
 }
 
-.header a.active{
+.header a.active:hover{
     background-color: dodgerblue;
     color: white;
 }
@@ -108,7 +156,7 @@ a:hover{
 .footer{
     grid-area: footer-section;
     font-family: monospace;
-    
+    margin: 1px;   
 }
 
 .footer .footerContent{
@@ -203,4 +251,28 @@ a:hover{
 .add_song_row{
     font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
     font-weight: 700;
+}
+.managePlaylistTitle{
+    font-family: monospace;
+    font-size: larger;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding-top: 10px;
+    padding-bottom: 40px;
+}
+
+.managePlaylistSelector{
+    display: flex;
+    align-items: center;
+    justify-content:space-around;   
+}
+.managePlaylistSelector a:hover{
+    cursor: pointer;
+}
+
+.managePlaylistSelector .row{
+    font-family: monospace;
+    font-weight: 700;
+    font-size: large;
 }
